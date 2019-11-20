@@ -21,7 +21,6 @@ http.createServer((request, response) => {
     response.writeHead(200, { 'Content-Type': 'text/html' });
     response.write(data);
     response.end();
-    .listen(8080);
   });
   fs.appendFile('log.txt', `URL: ${addr}\nTimestamp: ${new Date()}\n\n`, (err) => {
     if (err) {
@@ -30,4 +29,4 @@ http.createServer((request, response) => {
       console.log('Added to log.');
     }
   });
-});
+}).listen(8080);
