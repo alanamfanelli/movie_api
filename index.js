@@ -24,6 +24,7 @@ const Movies = [
   },
 ];
 
+app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(morgan('common'));
 
@@ -86,3 +87,5 @@ app.delete('/favorites/:username/:title', (req, res) => {
 app.delete('/users/:username', (req, res) => {
   res.send('User successfully deleted from registry.');
 });
+// listen for requests
+app.listen(8080, () => console.log('My movie app is listening on port 8080.'));
