@@ -53,32 +53,67 @@
         </tr>
         <tr>
           <td>Get data about a single movie by title</td>
-          <td>/movies/[title]</td>
+          <td>/movies/[Title]</td>
           <td>GET</td>
           <td>None</td>
           <td>
             JSON object holding data about a single movie, containing title,
-            description, genre, director,image URL
+            description, genre, and director.
+            Example: <p style="color:blue">
+              {
+                  "Genre": {
+                      "Name": "Thriller",
+                      "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involvesexcitement and suspense in the audience."
+                  },
+                  "Director": {
+                      "Name": "Jonathan Demme",
+                      "Bio": "Robert Jonathan Demme was an American director, producer, and screenwriter.",
+                      "Birth": "1944",
+                      "Death": "2017"
+                  },
+                  "Actors": [],
+                  "_id": "5d9bab4307ab30237c44c353",
+                  "Title": "Silence of the Lambs",
+                  "Description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
+                  "ImagePath": "silenceofthelambs.png",
+                  "Featured": true
+                  }
+            </p>
           </td>
         </tr>
         <tr>
           <td>Get data about a movie genre</td>
-          <td>/genre/[name]</td>
+          <td>/movies/genres/[Name]</td>
           <td>GET</td>
           <td>None</td>
           <td>
             JSON object holding data about a movie genre, containing name and
             description.
+            Example: <p style="color:blue">
+              {
+                "Name": "Action",
+               "Description": "Action film is a film genre in which the protagonist
+                or protagonists are thrust into a series of events that typically include
+                 violence, extended fighting, physical feats, and frantic chases."
+              }
+            </p>
           </td>
         </tr>
         <tr>
           <td>Get data about a director</td>
-          <td>/director/[name]</td>
+          <td>/movies/directors/[Name]</td>
           <td>GET</td>
           <td>None</td>
           <td>
             JSON object holding data about a director, containing name, bio,
             birth year, death year.
+            Example: <p style="color:blue">
+              {
+                "Name": "Jonathan Demme",
+                "Bio": "Robert Jonathan Demme was an American director, producer, and screenwriter.",
+                "Birth": "1944"
+              }
+            </P>
           </td>
         </tr>
         <tr>
@@ -87,30 +122,50 @@
           <td>POST</td>
           <td>
             JSON object holding data about the user to add, structured like:
-            <p>
-              { username: "John Doe", password: "pw123", email:
-              "john.doe@gmail.com", dateofbirth: "12/20/66"
+             <p style="color: blue">
+            {
+              "Username" : "helloworld123456",
+               "Password" : "password123456",
+               "Email" : "example123456@gmail.com",
+               "Birthday" : "1970-03-21"
+            }
             </p>
           </td>
           <td>
             JSON object holding data about the user that was add, structured
             like:
-            <p>
-              { id: 7, username: "John Doe", password: "pw123", email:
-              "john.doe@gmail.com", dateofbirth: "12/20/66"
+            <p style="color:blue">
+            {
+              "FavoriteMovies": [],
+                "_id": "5d9d82069bc166069f68524d",
+                "Username": "helloworld123456",
+                "Password": "password123456",
+                "Email": "example123456@gmail.com",
+                "Birthday": "1970-03-21T00:00:00.000Z",
+                "__v": 0
+            }
             </p>
           </td>
         </tr>
         <tr>
           <td>Update a user's information</td>
-          <td>/users/[username]/[password]/[email]/[date of birth]</td>
+          <td>/users/[Username]</td>
           <td>PUT</td>
-          <td>None</td>
+          <td>A JSON object holding data about the user to add, structured like:
+            <p style="color: blue">
+              {
+                "Username" : "Newusername1231561",
+               "Password" : "Newpassword3486198",
+               "Email" : "Newemail16513651@gmail.com",
+               "Birthday" : "1980-10-15"
+              }
+            </p>
+          </td>
           <td>A text message indicating the user's information was updated.</td>
         </tr>
         <tr>
           <td>Add a movie to the user's favorites list</td>
-          <td>/favorites/[username]/[title]</td>
+          <td>/users/[Username]/Movies/[MovieID]</td>
           <td>POST</td>
           <td>None</td>
           <td>
@@ -120,7 +175,7 @@
         </tr>
         <tr>
           <td>Delete a movie from the user's favorites list</td>
-          <td>/favorites/[username]/[title]</td>
+          <td>/users/[Username]/Movies/[MovieID]</td>
           <td>DELETE</td>
           <td>None</td>
           <td>
@@ -130,7 +185,7 @@
         </tr>
         <tr>
           <td>Remov a user from the registry.</td>
-          <td>/users/[username]/[title]</td>
+          <td>/users/[Username]</td>
           <td>DELETE</td>
           <td>None</td>
           <td>
