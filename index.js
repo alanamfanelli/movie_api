@@ -111,7 +111,7 @@ app.put('/users/:username/:password/:email/:dateofbirth', (req, res) => {
   (required)
   Birthday: Date
 }*/
-app.put('/users/:Username', function(req, res) {
+app.put('/users/:username', function(req, res) {
   Users.findOneAndUpdate({ Username : req.params.Username }, { $set :
   {
     Username : req.body.Username,
