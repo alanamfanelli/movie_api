@@ -37,8 +37,15 @@ app.get('/movies', (req, res) => {
 });
 
 // Gets the data about a single movie by title
-app.get('/movies/:title', (req, res) => {
-  res.send('Successful GET request returning data about a single movie.');
+app.get('/movies/:Title', (req, res) => {
+  Movies.find({ Title: req.params.Title })
+    .then((movies) => {
+      res.status(201).json(movies); /* Returns One By Title */
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send(`Error${err}`);
+    });
 });
 
 // Gets the data about a movie genre by name
@@ -54,8 +61,15 @@ app.get('/movies/genres/:Title', (req, res) => {
 });
 
 // Gets the data about a director by name
-app.get('/director/:name', (req, res) => {
-  res.send('Successful GET request returning data about a director.');
+app.get('/movies/director/:Name', (req, res) => {
+  Movies.findOne({ 'Director.Name': req.params.Name })
+    .then((movies) => {
+      res.status(201).json(movies.Director); /* Returns Director By Name */
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send(`Error${err}`);
+    });
 });
 
 // Add a user
