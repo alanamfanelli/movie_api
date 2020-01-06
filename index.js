@@ -15,6 +15,10 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(morgan('common'));
 
+const auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
+
 // Error handling middleware functions
 
 app.use((err, req, res, next) => {
@@ -25,7 +29,7 @@ app.use((err, req, res, next) => {
 
 // Get movies and details
 
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
@@ -37,7 +41,7 @@ app.get('/movies', (req, res) => {
 });
 
 // Gets the data about a single movie by title
-app.get('/movies/:Title', (req, res) => {
+app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.find({ Title: req.params.Title })
     .then((movies) => {
       res.status(201).json(movies); /* Returns One By Title */
@@ -49,7 +53,7 @@ app.get('/movies/:Title', (req, res) => {
 });
 
 // Gets the data about a movie genre by name
-app.get('/movies/genres/:Title', (req, res) => {
+app.get('/movies/genres/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.findOne({ Title: req.params.Title })
     .then((movie) => {
       res.status(201).send(`${movie.Genre.Name} : ${movie.Genre.Description}`); /* Returns Genre Info By Movie Title */
@@ -61,7 +65,7 @@ app.get('/movies/genres/:Title', (req, res) => {
 });
 
 // Gets the data about a director by name
-app.get('/movies/director/:Name', (req, res) => {
+app.get('/movies/director/:Name', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.findOne({ 'Director.Name': req.params.Name })
     .then((movies) => {
       res.status(201).json(movies.Director); /* Returns Director By Name */
@@ -106,7 +110,7 @@ app.post('/users', (req, res) => {
 });
 
 // Update the a user's information
-app.put('/users/:username/:password/:email/:dateofbirth', (req, res) => {
+app.put('/users/:username/:password/:email/:dateofbirth', passport.authenticate('jwt', { session: false }), (req, res) => {
   res.send('User information updated.');
 });
 // Update a user's info, by username
@@ -120,7 +124,7 @@ app.put('/users/:username/:password/:email/:dateofbirth', (req, res) => {
   (required)
   Birthday: Date
 } */
-app.put('/users/:Username', (req, res) => {
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $set:
   {
@@ -141,7 +145,7 @@ app.put('/users/:Username', (req, res) => {
   });
 });
 // Add a movie to a user's list of favorites
-app.post('/users/:Username/Movies/:MovieID', (req, res) => {
+app.post('/users/:Username/Movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $push: { FavoriteMovies: req.params.MovieID },
   },
@@ -156,7 +160,7 @@ app.post('/users/:Username/Movies/:MovieID', (req, res) => {
   });
 });
 // Get all users
-app.get('/users', (req, res) => {
+app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.find()
     .then((users) => {
       res.status(201).json(users);
@@ -167,12 +171,12 @@ app.get('/users', (req, res) => {
     });
 });
 // Deletes a movie from a user's favorites list by username
-app.delete('/favorites/:username/:title', (req, res) => {
+app.delete('/favorites/:username/:title', passport.authenticate('jwt', { session: false }), (req, res) => {
   res.send('Movie successfully deleted from favorites.');
 });
 
 // Delete a user by username
-app.delete('/users/:Username', (req, res) => {
+app.delete('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndRemove({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
