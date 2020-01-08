@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const uuid = require('uuid');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const Models = require('./models.js');
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -19,7 +20,6 @@ require('./passport');
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
 const auth = require('./auth')(app);
-const Models = require('./models.js');
 
 // Error handling middleware functions
 
