@@ -7,7 +7,7 @@ const Models = require('./models.js');
 
 const Movies = Models.Movie;
 const Users = Models.User;
-mongoose.connect('mongodb+srv://myFlixDBadmin:Fanelli1@cluster0-mmbvz.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://myFlixDBadmin:Beller1981@cluster0-mmbvz.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true });
 
 const app = express();
 
