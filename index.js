@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const uuid = require('uuid');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Models = require('./models.js');
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -19,11 +18,12 @@ const passport = require('passport');
 require('./passport');
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
+const Models = require('./models.js');
 const auth = require('./auth')(app);
 
 // Error handling middleware functions
 
-const allowedOrigins = ['http://localhost:8080', 'http://erinnienhuis.com'];
+const allowedOrigins = ['http://localhost:8080', 'https://thawing-sands-21801.herokuapp.com/'];
 
 app.use(cors({
   origin(origin, callback) {
