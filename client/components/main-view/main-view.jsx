@@ -1,17 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
-export class MainView extends Component {
+export class MainView extends React.Component {
+
     constructor() {
         super();
 
         this.state = {
             movies: null,
-            selectMovie: null
+            selectedMovie: null
         };
+    }
+
+    componentDidMount() {
+        /* ... */
     }
 
     onMovieClick(movie) {
@@ -20,15 +25,6 @@ export class MainView extends Component {
         });
     }
 
-    componentDidMount() {
-        const endpoint = "https://shielded-anchorage-97078.herokuapp.com/movies";
-        axios.get(endpoint)
-            .then(res => {
-                console.log(res.data[0]);
-                this.setState({ movies: res.data })
-            })
-            .catch(err => console.log(err));
-    }
 
     render() {
         const { movies, selectedMovie } = this.state;
@@ -37,9 +33,7 @@ export class MainView extends Component {
         if (!movies) return <div className="main-view" />;
 
         return (
-
             <div className="main-view">
-                {console.log(movies[2].movie)}
                 {selectedMovie
                     ? <MovieView movie={selectedMovie} />
                     : movies.map(movie => (
@@ -50,5 +44,3 @@ export class MainView extends Component {
         );
     }
 }
-
-12  client / src / components / movie - card / movie - card.jsx 
