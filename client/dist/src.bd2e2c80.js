@@ -33717,7 +33717,7 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      _axios.default.get('http://localhost:3000/movies').then(function (resp) {
+      _axios.default.get('https://thawing-sands-21801.herokuapp.com/movies').then(function (resp) {
         _this2.setState({
           movies: resp.data
         });
@@ -33919,7 +33919,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53621" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59412" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,1 +1,1 @@
-{"version":3,"sources":["../index.scss"],"names":[],"mappings":"AAEA,SACE","file":"src.9051d4af.css","sourceRoot":"../src/dist","sourcesContent":["$color: steelblue;\n\n.my-flix {\n  color: $color;\n}\n"]}
+{"version":3,"sources":["../index.scss"],"names":[],"mappings":"AAEA,SACE","file":"src.9051d4af.css","sourceRoot":"../src","sourcesContent":["$color: steelblue;\n\n.my-flix {\n  color: $color;\n}\n"]}
