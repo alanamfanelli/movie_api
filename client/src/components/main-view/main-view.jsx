@@ -16,7 +16,9 @@ export class MainView extends React.Component {
     }
 
     componentDidMount() {
-        /* ... */
+        axios.get('http://localhost:3000/movies').then(resp => {
+          this.setState({movies: resp.data})
+        })
     }
 
     onMovieClick(movie) {
@@ -25,12 +27,12 @@ export class MainView extends React.Component {
         });
     }
 
-
     render() {
         const { movies, selectedMovie } = this.state;
 
         // Before the movies have been loaded
-        if (!movies) return <div className="main-view" />;
+        if (!movies)
+          return <div className="main-view">There are no movies.</div>;
 
         return (
             <div className="main-view">
