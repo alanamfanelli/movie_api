@@ -29,11 +29,14 @@ app.use(cors());
 app.get('/products/:id', (req, res, next) => {
   res.json({ msg: 'This is CORS-enabled for all origins!' });
 });
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
   next();
 });
+
+app.get('/*', express.static('client/dist'))
 
 // Get movies and details
 
