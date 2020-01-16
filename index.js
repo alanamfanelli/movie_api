@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const uuid = require('uuid');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-
+const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 mongoose.connect('mongodb+srv://testaccount:testing12345@cluster0-mmbvz.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true });
@@ -18,7 +18,6 @@ const passport = require('passport');
 require('./passport');
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
-const Models = require('./models.js');
 const auth = require('./auth')(app);
 
 // Error handling middleware functions
