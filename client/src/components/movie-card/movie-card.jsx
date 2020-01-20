@@ -7,7 +7,7 @@ export class MovieCard extends React.Component {
         // connected to your database via the movies endpoint of your API
         const { movie, onClick } = this.props;
 
-        const coverImage = images[movie.ImagePath]
+        let image = `https://thawing-sands-21801.herokuapp.com/images/${movie.imagePath}`;
 
         return (
             <div onClick={() => onClick(movie)} className="movie-card">
