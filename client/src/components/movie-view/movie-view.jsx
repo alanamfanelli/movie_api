@@ -15,6 +15,10 @@ export class MovieView extends React.Component {
 
         return (
             <div className="movie-view">
+                <div
+                    className="movie-go-back"
+                    onClick={() => onClick()}
+                >Go back to the list of movies</div>
                 <img className="movie-poster" src={movie.ImagePath} />
                 <div className="movie-title">
                     <span className="label">Title: </span>
