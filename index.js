@@ -37,7 +37,6 @@ app.use((err, req, res, next) => {
 });
 
 app.get('/*', express.static('client/dist'))
-app.use('/client', express.static(path.join(__dirname, 'client', 'dist')));
 
 // Get movies and details
 
