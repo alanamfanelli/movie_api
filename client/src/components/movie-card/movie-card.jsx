@@ -1,7 +1,5 @@
 import React from 'react';
 
-import images from '../../images/*.jpg';
-
 export class MovieCard extends React.Component {
     render() {
         // This is given to the <MovieCard/> component by the outer world
@@ -13,7 +11,7 @@ export class MovieCard extends React.Component {
 
         return (
             <div onClick={() => onClick(movie)} className="movie-card">
-                <img src={coverImage} />
+                <img src={movie.imagePath} />
                 {movie.Title}
             </div>
         );
