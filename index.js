@@ -19,6 +19,7 @@ require('./passport');
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
 const auth = require('./auth')(app);
+const path = require('path');
 
 // Error handling middleware functions
 
@@ -36,6 +37,7 @@ app.use((err, req, res, next) => {
   next();
 });
 
+app.use('/client', express.static(path.join(__dirname, 'client', 'dist')));
 app.get('/*', express.static('client/dist'))
 
 // Get movies and details
