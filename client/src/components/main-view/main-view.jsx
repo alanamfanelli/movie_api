@@ -17,7 +17,7 @@ export class MainView extends React.Component {
 
     componentDidMount() {
         axios.get('https://thawing-sands-21801.herokuapp.com/movies').then(resp => {
-          this.setState({movies: resp.data})
+            this.setState({ movies: resp.data })
         })
     }
 
@@ -32,7 +32,7 @@ export class MainView extends React.Component {
 
         // Before the movies have been loaded
         if (!movies)
-          return <div className="main-view">There are no movies.</div>;
+            return <div className="main-view">There are no movies.</div>;
 
         return (
             <div className="main-view">

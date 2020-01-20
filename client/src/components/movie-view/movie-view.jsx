@@ -8,37 +8,40 @@ export class MovieView extends React.Component {
         this.state = {};
     }
 
+
+
     render() {
         const { movie } = this.props;
+
+        let image = `https://thawing-sands-21801.herokuapp.com/images/${movie.ImagePath}`;
 
         if (!movie) return null;
 
         return (
             <div className="movie-view">
-                <form>
-                    <input type="button" value="Go back!" onclick="history.back()">
-                </form>
-                    <img className="movie-poster" src={movie.ImagePath} />
-                    <div className="movie-title">
-                        <span className="label">Title: </span>
-                        <span className="value">{movie.Title}</span>
-                    </div>
-                    <div className="movie-description">
-                        <span className="label">Description: </span>
-                        <span className="value">{movie.Description}</span>
-                    </div>
+                <a href="/">Go back</a>
 
-                    <div className="movie-genre">
-                        <span className="label">Genre: </span>
-                        <span className="value">{movie.Genre.Name}</span>
-                    </div>
-                    <div className="movie-director">
-                        <span className="label">Director: </span>
-                        <span className="value">{movie.Director.Name}</span>
-                    </div>
+                <img className="movie-poster" width="300px" src={image} />
+                <div className="movie-title">
+                    <span className="label">Title: </span>
+                    <span className="value">{movie.Title}</span>
+                </div>
+                <div className="movie-description">
+                    <span className="label">Description: </span>
+                    <span className="value">{movie.Description}</span>
+                </div>
+
+                <div className="movie-genre">
+                    <span className="label">Genre: </span>
+                    <span className="value">{movie.Genre.Name}</span>
+                </div>
+                <div className="movie-director">
+                    <span className="label">Director: </span>
+                    <span className="value">{movie.Director.Name}</span>
+                </div>
             </div>
 
 
-                );
-            }
+        );
+    }
 }
