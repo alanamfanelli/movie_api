@@ -11,7 +11,7 @@ export class MovieView extends React.Component {
 
 
     render() {
-        const { movie } = this.props;
+        const { movie, onClick } = this.props;
 
         let image = `https://thawing-sands-21801.herokuapp.com/images/${movie.ImagePath}`;
 
@@ -34,12 +34,7 @@ export class MovieView extends React.Component {
                 <div className="movie-director">
                     <div className="value">Director: {movie.Director.Name}</div>
                 </div>
-                <button
-                    className="btn btn-outline-primary text-uppercase mt-2"
-                    onClick={() => onClick()}
-                >
-                    Back to Movies
-                </button>
+                <a href="/">Back to Movies</a>
             </div>
 
 
