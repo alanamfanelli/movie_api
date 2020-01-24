@@ -14,14 +14,22 @@ export class MovieCard extends React.Component {
 
 
         return (
-            <Card style={{ width: '16rem' }}>
-                <Card.Img variant="top" src={image} />
-                <Card.Body>
-                    <Card.Title>{movie.Title}</Card.Title>
-                    <Card.Text>{movie.Description}</Card.Text>
-                    <Button onClick={() => onClick(movie)} variant="link">Open</Button>
-                </Card.Body>
-            </Card>
+            <div className="col-10 col-lg-3 ml-5 mt-5">
+                <Card style={{ width: "16rem" }}>
+                    <Card.Img variant="top" src={image} />
+                    <Card.Body>
+                        <Card.Title>{movie.Title}</Card.Title>
+                        <Card.Text>{movie.Description}</Card.Text>
+                        <Button
+                            className="btn btn-outline-primary text-uppercase"
+                            onClick={() => onClick(movie)}
+                            variant="link"
+                        >
+                            More Info
+                        </Button>
+                    </Card.Body>
+                </Card>
+            </div>
         );
     }
 }

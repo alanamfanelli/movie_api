@@ -34,7 +34,7 @@ export class MovieView extends React.Component {
                 <div className="movie-director">
                     <div className="value">Director: {movie.Director.Name}</div>
                 </div>
-                <a href="/">Back to Movies</a>
+                <a href="/"><button className="btn btn-outline-primary text-uppercase mt-2">Back to Movies</button></a>
             </div>
 
 
