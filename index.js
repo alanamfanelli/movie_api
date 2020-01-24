@@ -43,7 +43,6 @@ app.get('/*', express.static('client/dist'))
 // Get movies and details
 
 app.get('/movies',
-passport.authenticate('jwt', { session: false }),
  (req, res) => {
   Movies.find()
     .then((movies) => {
@@ -154,7 +153,7 @@ app.put('/users/:username/:password/:email/:dateofbirth', passport.authenticate(
   (required)
   Birthday: Date
 } */
-app.put('/users/:Username', (req, res) => {
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $set:
   {
