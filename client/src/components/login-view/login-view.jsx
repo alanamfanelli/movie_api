@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./login-view.scss";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -24,7 +25,7 @@ export function LoginView(props) {
     };
 
     return (
-        <Form>
+        <Form className="login-form">
             <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username:</Form.Label>
                 <Form.Control type="text" placeholder="Enter username" value={username} onChange={e => setUsername(e.target.value)} />
