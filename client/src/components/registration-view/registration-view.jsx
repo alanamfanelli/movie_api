@@ -12,7 +12,7 @@ export function RegistrationView(props) {
     const handleRegister = e => {
         e.preventDefault();
         axios
-            .post("https://myflixdb-api.herokuapp.com/login", {
+            .post("https://thawing-sands-21801.herokuapp.com/users", {
                 Username: username,
                 Password: password,
                 Email: email,

@@ -18,7 +18,6 @@ const passport = require('passport');
 require('./passport');
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
-const auth = require('./auth')(app);
 const path = require('path');
 
 // Error handling middleware functions
@@ -26,6 +25,7 @@ const path = require('path');
 const allowedOrigins = ['http://localhost:8080', 'https://thawing-sands-21801.herokuapp.com/'];
 
 app.use(cors());
+const auth = require('./auth')(app);
 
 app.get('/products/:id', (req, res, next) => {
   res.json({ msg: 'This is CORS-enabled for all origins!' });
