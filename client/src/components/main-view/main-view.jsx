@@ -1,11 +1,13 @@
 import React from "react";
 import axios from 'axios';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { RouterLink } from 'react-router-dom';
 
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
+import { ProfileView } from '../profile-view/profile-view';
 import { LoginView } from '../login-view/login-view';
 import { Button } from "react-bootstrap";
 import { RegistrationView } from '../registration-view/registration-view';
@@ -29,6 +31,7 @@ export class MainView extends React.Component {
                 user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
+            this.getAllUsers(accessToken)
         }
     }
 
@@ -71,8 +74,22 @@ export class MainView extends React.Component {
             });
     }
 
+    getAllUsers(token) {
+        axios.get('https://thawing-sands-21801.herokuapp.com/users', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                this.setState({
+                    users: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     render() {
-        const { movies, selectedMovie, user } = this.state;
+        const { movies, selectedMovie, user, users } = this.state;
 
 
         // Before the movies have been loaded
@@ -89,6 +106,10 @@ export class MainView extends React.Component {
                     >
                         Logout
           </Button>
+                    <Link component={RouterLink} to={`/users/${user}`} >
+                        <Button variant="light mr-1" size="lg" className="profile-button">See {user}'s Profile</Button>
+                    </Link>
+                    <Link to="/register">Register</Link>
                     <div className="main-view row">
                         <Route
                             exact
@@ -110,6 +131,8 @@ export class MainView extends React.Component {
                                     movie={movies.find((m) => m._id === match.params.movieId)}
                                 />
                             )}
+                        />
+                        <Route exact path="/users/:Username" render={({ match }) => <ProfileView user={users.find(user => user.Username === match.params.Username)} movies={movies} />}
                         />
                         <Route
                             exact

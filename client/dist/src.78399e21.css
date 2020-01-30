@@ -1,4 +1,83 @@
+.update-button {
+  background-color: #ececec;
+  border-color: #ececec;
+  color: #522266;
+  border-radius: 24px;
+}
+
+.update-button:hover {
+  background-color: #b9b9b9;
+  border-color: #b9b9b9;
+}
+
+.update-button:focus,
+.update-button:active {
+  outline: none !important;
+  box-shadow: none;
+  background-color: #b9b9b9 !important;
+}
+
+.delete-button {
+  background-color: #522266;
+  border-color: #522266;
+  border-radius: 24px;
+}
+
+.delete-button:hover {
+  background-color: #903cb3;
+  border-color: #903cb3;
+}
+
+.delete-button:focus,
+.delete-button:active {
+  outline: none !important;
+  box-shadow: none;
+  background-color: #903cb3 !important;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.movie-link {
+  color: #522266;
+}
+
+.movie-link:hover,
+.movie-link:hover {
+  color: #903cb3;
+  text-decoration: none !important;
+}
+
+.delete-movie {
+  background-color: #ececec;
+  border-color: #ececec;
+  border-radius: 24px;
+}
+
+.delete-movie:hover {
+  background-color: #b9b9b9;
+  border-color: #b9b9b9;
+}
+
+.delete-movie:focus,
+.delete-movie:active {
+  outline: none !important;
+  box-shadow: none;
+  background-color: #b9b9b9 !important;
+}
+
+.bin {
+  color: #522266;
+}
 .login-form {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+}
+.registration-form {
   width: 100%;
   max-width: 330px;
   padding: 15px;

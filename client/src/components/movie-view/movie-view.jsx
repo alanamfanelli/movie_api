@@ -30,6 +30,14 @@ export class MovieView extends React.Component {
                     <span className="value">{movie.Description}</span>
                 </div>
 
+                <Button className="add-favorite-btn mt-4">
+                    <span className="d-flex align-items-center">
+                        <i className="material-icons heart mr-3"></i>
+                        Add to my favorites
+              </span>
+
+                </Button>
+
                 <div className="movie-genre">
                     Genre:
                     <Link to={`/genres/${movie.Genre.Name}`}>
