@@ -66,7 +66,7 @@ export class ProfileView extends React.Component {
         console.log(user);
 
 
-        const favoritesList = movies.filter(movie => user.Favorites.includes(movie._id));
+        const favoritesList = movies.filter(movie => user.FavoriteMovies.includes(movie._id));
         console.log(favoritesList);
 
         if (!user || !movies || movies.length === 0) return <div>loading</div>;
@@ -78,7 +78,7 @@ export class ProfileView extends React.Component {
                         <Card.Body>
                             <span className="d-flex align-items-center mb-4">
                                 <Link to={`/`}>
-                                    <i className="material-icons">arrow_back_ios</i>
+                                    <i className="material-icons">Go back</i>
                                 </Link>
                                 <h1 className="display-4">Profile</h1>
                             </span>
@@ -87,7 +87,7 @@ export class ProfileView extends React.Component {
                                 <span className="font-weight-bold">Email: </span>{user.Email} <br />
                                 <span className="font-weight-bold">Birthday: </span>{user.Birthday.slice(0, 10)} <br />
                             </Card.Text>
-                            <Link to={`/update/${user.Username}`}>
+                            <Link to={`/users/${user.Username}`}>
                                 <Button variant="primary" className="update-button">Update my profile</Button>
                             </Link>
 
@@ -97,7 +97,7 @@ export class ProfileView extends React.Component {
                     </Card>
                     <Container>
                         <h4 className="mt-4">Your favorite movies: </h4>
-                        {user.Favorites.length === 0 &&
+                        {user.FavoriteMovies.length === 0 &&
                             <ul className="ml-0 pl-0">
                                 {favoritesList.map(movie =>
                                     (

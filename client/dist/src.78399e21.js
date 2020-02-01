@@ -52206,7 +52206,7 @@ function (_React$Component) {
       console.log(this.props);
       console.log(user);
       var favoritesList = movies.filter(function (movie) {
-        return user.Favorites.includes(movie._id);
+        return user.FavoriteMovies.includes(movie._id);
       });
       console.log(favoritesList);
       if (!user || !movies || movies.length === 0) return _react.default.createElement("div", null, "loading");
@@ -52223,7 +52223,7 @@ function (_React$Component) {
         to: "/"
       }, _react.default.createElement("i", {
         className: "material-icons"
-      }, "arrow_back_ios")), _react.default.createElement("h1", {
+      }, "Go back")), _react.default.createElement("h1", {
         className: "display-4"
       }, "Profile")), _react.default.createElement(_reactBootstrap.Card.Text, {
         className: "mb-4 lead"
@@ -52234,7 +52234,7 @@ function (_React$Component) {
       }, "Email: "), user.Email, " ", _react.default.createElement("br", null), _react.default.createElement("span", {
         className: "font-weight-bold"
       }, "Birthday: "), user.Birthday.slice(0, 10), " ", _react.default.createElement("br", null)), _react.default.createElement(_reactRouterDom.Link, {
-        to: "/update/".concat(user.Username)
+        to: "/users/".concat(user.Username)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "primary",
         className: "update-button"
@@ -52246,7 +52246,7 @@ function (_React$Component) {
         }
       }, "Delete my profile"))), _react.default.createElement(_reactBootstrap.Container, null, _react.default.createElement("h4", {
         className: "mt-4"
-      }, "Your favorite movies: "), user.Favorites.length === 0 && _react.default.createElement("ul", {
+      }, "Your favorite movies: "), user.FavoriteMovies.length === 0 && _react.default.createElement("ul", {
         className: "ml-0 pl-0"
       }, favoritesList.map(function (movie) {
         return _react.default.createElement("li", {
@@ -52822,7 +52822,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63107" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61112" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

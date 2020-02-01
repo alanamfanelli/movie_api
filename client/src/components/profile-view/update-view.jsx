@@ -44,7 +44,7 @@ export function UpdateView(props) {
         <div className="update-view justify-content-center">
             <span className="d-flex align-items-center mb-4">
                 <Link to={`/users/${user}`}>
-                    <i className="material-icons">arrow_back_ios</i>
+                    <i className="material-icons">Go Back</i>
                 </Link>
                 <h1 className="">Update {user}'s profile</h1>
             </span>
