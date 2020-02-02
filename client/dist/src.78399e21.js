@@ -38169,6 +38169,8 @@ var _reactRouterDom = require("react-router-dom");
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
+var _axios = _interopRequireDefault(require("axios"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -38205,8 +38207,33 @@ function (_React$Component) {
   }
 
   _createClass(MovieView, [{
+    key: "addToFavorites",
+    value: function addToFavorites(e) {
+      var movie = this.props.movie;
+      e.preventDefault();
+
+      _axios.default.post("https://thawing-sands-21801.herokuapp.com/users/".concat(localStorage.getItem('user'), "/Movies/").concat(movie._id), {
+        username: localStorage.getItem('user')
+      }, {
+        headers: {
+          Authorization: "Bearer ".concat(localStorage.getItem('token'))
+        }
+      }).then(function (res) {
+        alert("".concat(movie.Title, " successfully added to your favorites"));
+      }) // .then(res => {
+      //   window.open(`/users/${localStorage.getItem('user')}`)
+      // })
+      .then(function (res) {
+        document.location.reload(true);
+      }).catch(function (error) {
+        alert("".concat(movie.Title, " not added to your favorites") + error);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$props = this.props,
           movie = _this$props.movie,
           onClick = _this$props.onClick;
@@ -38227,12 +38254,15 @@ function (_React$Component) {
       }, _react.default.createElement("span", {
         className: "value"
       }, movie.Description)), _react.default.createElement(_Button.default, {
-        className: "add-favorite-btn mt-4"
+        className: "add-favorite-btn mt-4",
+        onClick: function onClick(e) {
+          return _this2.addToFavorites(e);
+        }
       }, _react.default.createElement("span", {
         className: "d-flex align-items-center"
       }, _react.default.createElement("i", {
         className: "material-icons heart mr-3"
-      }), "Add to my favorites")), _react.default.createElement("div", {
+      }, "favorite"), "Add to my favorites")), _react.default.createElement("div", {
         className: "movie-genre"
       }, "Genre:", _react.default.createElement(_reactRouterDom.Link, {
         to: "/genres/".concat(movie.Genre.Name)
@@ -38257,7 +38287,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.MovieView = MovieView;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/director-view/director-view.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","axios":"../node_modules/axios/index.js"}],"components/director-view/director-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52234,7 +52264,7 @@ function (_React$Component) {
       }, "Email: "), user.Email, " ", _react.default.createElement("br", null), _react.default.createElement("span", {
         className: "font-weight-bold"
       }, "Birthday: "), user.Birthday.slice(0, 10), " ", _react.default.createElement("br", null)), _react.default.createElement(_reactRouterDom.Link, {
-        to: "/users/".concat(user.Username)
+        to: "/update/".concat(user.Username)
       }, _react.default.createElement(_reactBootstrap.Button, {
         variant: "primary",
         className: "update-button"
@@ -52822,7 +52852,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61112" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64074" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

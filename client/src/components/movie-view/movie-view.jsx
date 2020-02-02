@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import axios from 'axios';
 
 export class MovieView extends React.Component {
 
@@ -10,6 +11,28 @@ export class MovieView extends React.Component {
         this.state = {};
     }
 
+    addToFavorites(e) {
+        const { movie } = this.props;
+        e.preventDefault();
+        axios.post(
+            `https://thawing-sands-21801.herokuapp.com/users/${localStorage.getItem('user')}/Movies/${movie._id}`,
+            { username: localStorage.getItem('user') },
+            {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            })
+            .then(res => {
+                alert(`${movie.Title} successfully added to your favorites`);
+            })
+            // .then(res => {
+            //   window.open(`/users/${localStorage.getItem('user')}`)
+            // })
+            .then(res => {
+                document.location.reload(true);
+            })
+            .catch(error => {
+                alert(`${movie.Title} not added to your favorites` + error)
+            });
+    }
 
 
     render() {
@@ -30,11 +53,11 @@ export class MovieView extends React.Component {
                     <span className="value">{movie.Description}</span>
                 </div>
 
-                <Button className="add-favorite-btn mt-4">
+                <Button className="add-favorite-btn mt-4" onClick={e => this.addToFavorites(e)}>
                     <span className="d-flex align-items-center">
-                        <i className="material-icons heart mr-3"></i>
+                        <i className="material-icons heart mr-3">favorite</i>
                         Add to my favorites
-              </span>
+                    </span>
 
                 </Button>
 

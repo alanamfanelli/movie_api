@@ -174,20 +174,36 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (r
   });
 });
 // Add a movie to a user's list of favorites
-app.post('/users/:Username/Movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username }, {
-    $push: { FavoriteMovies: req.params.MovieID },
-  },
-  { new: true }, // This line makes sure that the updated document is returned
-  (err, updatedUser) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send(`Error: ${err}`);
-    } else {
-      res.json(updatedUser);
-    }
-  });
-});
+app.post(
+  '/users/:Username/Movies/:MovieID',
+  passport.authenticate('jwt', { session: false }),
+  function (req, res) {
+    Users.findOneAndUpdate(
+      { Username: req.params.Username },
+      { $push: { Favorites: req.params.MovieID } },
+      { new: true },
+      function (err, updatedUser) {
+        if (err) {
+          console.error(err);
+          res.status(500).send('Error' + err);
+        } else {
+          res
+            .status(201)
+            .send(
+              'The movie with ID ' +
+              req.params.MovieID +
+              ' was successfully added to list of favorites. ' +
+              'Favorites of ' +
+              updatedUser.Username +
+              ': ' +
+              updatedUser.Favorites
+            );
+        }
+      }
+    );
+  }
+);
+
 // Get all users
 app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.find()

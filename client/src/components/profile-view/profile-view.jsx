@@ -87,7 +87,7 @@ export class ProfileView extends React.Component {
                                 <span className="font-weight-bold">Email: </span>{user.Email} <br />
                                 <span className="font-weight-bold">Birthday: </span>{user.Birthday.slice(0, 10)} <br />
                             </Card.Text>
-                            <Link to={`/users/${user.Username}`}>
+                            <Link to={`/update/${user.Username}`}>
                                 <Button variant="primary" className="update-button">Update my profile</Button>
                             </Link>
 
