@@ -11,6 +11,7 @@ import { ProfileView } from '../profile-view/profile-view';
 import { LoginView } from '../login-view/login-view';
 import { Button } from "react-bootstrap";
 import { RegistrationView } from '../registration-view/registration-view';
+import { UpdateView } from '../profile-view/update-view';
 
 export class MainView extends React.Component {
 
@@ -89,7 +90,7 @@ export class MainView extends React.Component {
     }
 
     render() {
-        const { movies, selectedMovie, user, users } = this.state;
+        const { movies, selectedMovie, user, users = [] } = this.state;
 
 
         // Before the movies have been loaded
@@ -133,6 +134,18 @@ export class MainView extends React.Component {
                             )}
                         />
                         <Route exact path="/users/:Username" render={({ match }) => <ProfileView user={users.find(user => user.Username === match.params.Username)} movies={movies} />}
+                        />
+                        <Route exact path="/update/:Username" render={({ match }) => {
+                            const selectedUser = users.find(user => user.Username === match.params.Username)
+
+                            let userName = ''
+
+                            if (selectedUser) {
+                                userName = selectedUser.Username
+                            }
+
+                            return <UpdateView user={userName} movies={movies} />
+                        }}
                         />
                         <Route
                             exact

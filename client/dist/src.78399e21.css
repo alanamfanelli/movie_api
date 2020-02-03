@@ -84,6 +84,35 @@ ul {
   margin: auto;
   height: 100%;
 }
+.warning {
+  color: #903cb3;
+}
+
+.update-btn {
+  background-color: #522266;
+  border-color: #522266;
+  border-radius: 24px;
+}
+
+.update-btn:hover {
+  background-color: #903cb3;
+  border-color: #903cb3;
+}
+
+.update-btn:focus,
+.update-btn:active {
+  outline: none !important;
+  box-shadow: none;
+  background-color: #903cb3 !important;
+}
+
+.unregister-btn {
+  color: #522266;
+}
+
+.unregister-btn:hover {
+  color: #903cb3;
+}
 .my-flix {
   color: steelblue;
 }

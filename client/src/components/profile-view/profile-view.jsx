@@ -65,11 +65,9 @@ export class ProfileView extends React.Component {
         console.log(this.props);
         console.log(user);
 
+        if (!user || !movies || movies.length === 0) return <div>loading</div>;
 
         const favoritesList = movies.filter(movie => user.FavoriteMovies.includes(movie._id));
-        console.log(favoritesList);
-
-        if (!user || !movies || movies.length === 0) return <div>loading</div>;
 
         return (
             <div className="profile-view">
@@ -96,12 +94,14 @@ export class ProfileView extends React.Component {
                         </Card.Body>
                     </Card>
                     <Container>
-                        <h4 className="mt-4">Your favorite movies: </h4>
+                        <h4 className="mt-4 mb-4">My favorite movies: </h4>
                         {user.FavoriteMovies.length === 0 &&
+                            <div>You have no favorite movies</div>}
+                        {user.FavoriteMovies.length > 0 &&
                             <ul className="ml-0 pl-0">
                                 {favoritesList.map(movie =>
                                     (
-                                        <li key={movie} className="mb-2 ">
+                                        <li key={movie._id} className="mb-2 ">
                                             <span className="d-flex align-items-center">
                                                 <Button variant="primary" size="sm" className="delete-movie mr-2" onClick={e => this.deleteFavorite(movie._id)}>
                                                     <i className="material-icons bin">delete</i>
@@ -119,7 +119,7 @@ export class ProfileView extends React.Component {
 
                     </Container>
                 </Container>
-            </div>
+            </div >
 
         );
     }

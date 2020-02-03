@@ -32,7 +32,7 @@ export function UpdateView(props) {
                 const data = res.data;
                 alert('Your profile data was updated successfully');
                 localStorage.setItem('user', data.Username);
-                window.open(`/users/${localStorage.getItem('user')}`);
+                window.location = `/users/${localStorage.getItem('user')}`
             })
             .catch(error => {
                 alert('error updating user ' + error);
@@ -95,5 +95,5 @@ export function UpdateView(props) {
 }
 
 UpdateView.propTypes = {
-    user: PropTypes.string.isRequired
+    user: PropTypes.string
 }

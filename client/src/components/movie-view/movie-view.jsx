@@ -23,9 +23,9 @@ export class MovieView extends React.Component {
             .then(res => {
                 alert(`${movie.Title} successfully added to your favorites`);
             })
-            // .then(res => {
-            //   window.open(`/users/${localStorage.getItem('user')}`)
-            // })
+            .then(res => {
+                window.open(`/users/${localStorage.getItem('user')}`)
+            })
             .then(res => {
                 document.location.reload(true);
             })
