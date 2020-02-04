@@ -105,7 +105,7 @@ class MainView extends React.Component {
             return <div className="main-view">There are no movies.</div>;
 
         return (
-            <Router>
+            <Router basename="/client">
                 <div>
                     <Button
                         variant="primary"
