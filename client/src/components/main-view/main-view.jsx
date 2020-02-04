@@ -13,7 +13,15 @@ import { Button } from "react-bootstrap";
 import { RegistrationView } from '../registration-view/registration-view';
 import { UpdateView } from '../profile-view/update-view';
 
-export class MainView extends React.Component {
+import { connect } from 'react-redux';
+
+// #0
+import { setMovies } from '../../actions/actions';
+
+// we haven't written this one yet
+import MoviesList from '../movies-list/movies-list';
+
+class MainView extends React.Component {
 
     constructor() {
         super();
@@ -59,16 +67,13 @@ export class MainView extends React.Component {
     }
 
 
-
     getMovies(token) {
         axios.get("https://thawing-sands-21801.herokuapp.com/movies", {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
-                // Assign the result to the state
-                this.setState({
-                    movies: response.data
-                });
+                // #1
+                this.props.setMovies(response.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -90,8 +95,10 @@ export class MainView extends React.Component {
     }
 
     render() {
-        const { movies, selectedMovie, user, users = [] } = this.state;
 
+        // #2
+        let { movies } = this.props;
+        let { user, users } = this.state;
 
         // Before the movies have been loaded
         if (!movies)
@@ -116,13 +123,9 @@ export class MainView extends React.Component {
                             exact
                             path="/"
                             render={() => {
-                                if (!user)
-                                    return (
-                                        <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-                                    );
-                                return movies.map((m) => <MovieCard key={m._id} movie={m} />);
-                            }}
-                        />
+                                if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+                                return <MoviesList movies={movies} />;
+                            }} />
                         <Route path="/register" render={() => <RegistrationView />} />
                         <Route
                             exact
@@ -135,6 +138,7 @@ export class MainView extends React.Component {
                         />
                         <Route exact path="/users/:Username" render={({ match }) => <ProfileView user={users.find(user => user.Username === match.params.Username)} movies={movies} />}
                         />
+
                         <Route exact path="/update/:Username" render={({ match }) => {
                             const selectedUser = users.find(user => user.Username === match.params.Username)
 
@@ -183,3 +187,11 @@ export class MainView extends React.Component {
         );
     }
 }
+
+// #3
+let mapStateToProps = state => {
+    return { movies: state.movies }
+}
+
+// #4
+export default connect(mapStateToProps, { setMovies })(MainView);
