@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
@@ -24,7 +25,7 @@ export class MovieView extends React.Component {
                 alert(`${movie.Title} successfully added to your favorites`);
             })
             .then(res => {
-                window.open(`/users/${localStorage.getItem('user')}`)
+                window.location = (`/users/${localStorage.getItem('user')}`)
             })
             .then(res => {
                 document.location.reload(true);
@@ -38,9 +39,9 @@ export class MovieView extends React.Component {
     render() {
         const { movie, onClick } = this.props;
 
-        let image = `https://thawing-sands-21801.herokuapp.com/images/${movie.ImagePath}`;
-
         if (!movie) return null;
+
+        let image = `https://thawing-sands-21801.herokuapp.com/images/${movie.ImagePath}`;
 
         return (
             <div className="container-fluid align-items-center ml-3 mt-2">

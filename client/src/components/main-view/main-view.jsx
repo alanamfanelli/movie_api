@@ -29,7 +29,7 @@ class MainView extends React.Component {
         this.state = {
             movies: [],
             selectedMovie: null,
-            user: null
+            user: null,
         };
     }
 
@@ -98,7 +98,7 @@ class MainView extends React.Component {
 
         // #2
         let { movies } = this.props;
-        let { user, users } = this.state;
+        let { user, users = [] } = this.state;
 
         // Before the movies have been loaded
         if (!movies)
@@ -113,11 +113,12 @@ class MainView extends React.Component {
                         onClick={() => this.onLoggedOut()}
                     >
                         Logout
-          </Button>
+                        </Button>
                     <Link component={RouterLink} to={`/users/${user}`} >
                         <Button variant="light mr-1" size="lg" className="profile-button">See {user}'s Profile</Button>
                     </Link>
                     <Link to="/register">Register</Link>
+
                     <div className="main-view row">
                         <Route
                             exact

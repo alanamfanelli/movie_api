@@ -187,7 +187,7 @@ app.post(
   function (req, res) {
     Users.findOneAndUpdate(
       { Username: req.params.Username },
-      { $push: { Favorites: req.params.MovieID } },
+      { $push: { FavoriteMovies: req.params.MovieID } },
       { new: true },
       function (err, updatedUser) {
         if (err) {
