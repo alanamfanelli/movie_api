@@ -9,7 +9,7 @@ import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { ProfileView } from '../profile-view/profile-view';
 import { LoginView } from '../login-view/login-view';
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { RegistrationView } from '../registration-view/registration-view';
 import { UpdateView } from '../profile-view/update-view';
 
@@ -106,84 +106,86 @@ class MainView extends React.Component {
 
         return (
             <Router basename="/client">
-                <div>
-                    {user && <Button
-                        variant="primary"
-                        type="submit"
-                        onClick={() => this.onLoggedOut()}
-                    >
-                        Logout
+                <Container fluid>
+                    <div>
+                        {user && <Button
+                            variant="primary"
+                            type="submit"
+                            onClick={() => this.onLoggedOut()}
+                        >
+                            Logout
                         </Button>}
-                    <Link component={RouterLink} to={`/users/${user}`} >
-                        <Button variant="light mr-1" size="lg" className="profile-button">See {user}'s Profile</Button>
-                    </Link>
-                    {!user && <Link to="/register">Register</Link>}
+                        <Link component={RouterLink} to={`/users/${user}`} >
+                            <Button variant="light mr-1" size="lg" className="profile-button">See {user}'s Profile</Button>
+                        </Link>
+                        {!user && <Link to="/register">Register</Link>}
 
-                    <div className="main-view row">
-                        <Route
-                            exact
-                            path="/"
-                            render={() => {
-                                if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-                                return <MoviesList movies={movies} />;
-                            }} />
-                        <Route path="/register" render={() => <RegistrationView />} />
-                        <Route
-                            exact
-                            path="/movies/:movieId"
-                            render={({ match }) => (
-                                <MovieView
-                                    movie={movies.find((m) => m._id === match.params.movieId)}
-                                />
-                            )}
-                        />
-                        <Route exact path="/users/:Username" render={({ match }) => <ProfileView user={users.find(user => user.Username === match.params.Username)} movies={movies} />}
-                        />
-
-                        <Route exact path="/update/:Username" render={({ match }) => {
-                            const selectedUser = users.find(user => user.Username === match.params.Username)
-
-                            let userName = ''
-
-                            if (selectedUser) {
-                                userName = selectedUser.Username
-                            }
-
-                            return <UpdateView user={userName} movies={movies} />
-                        }}
-                        />
-                        <Route
-                            exact
-                            path="/genres/:name"
-                            render={({ match }) => {
-                                if (!movies) return <div className="main-view" />;
-                                return (
-                                    <GenreView
-                                        genre={
-                                            movies.find((m) => m.Genre.Name === match.params.name)
-                                                .Genre
-                                        }
+                        <div className="main-view row">
+                            <Route
+                                exact
+                                path="/"
+                                render={() => {
+                                    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+                                    return <MoviesList movies={movies} />;
+                                }} />
+                            <Route path="/register" render={() => <RegistrationView />} />
+                            <Route
+                                exact
+                                path="/movies/:movieId"
+                                render={({ match }) => (
+                                    <MovieView
+                                        movie={movies.find((m) => m._id === match.params.movieId)}
                                     />
-                                );
+                                )}
+                            />
+                            <Route exact path="/users/:Username" render={({ match }) => <ProfileView user={users.find(user => user.Username === match.params.Username)} movies={movies} />}
+                            />
+
+                            <Route exact path="/update/:Username" render={({ match }) => {
+                                const selectedUser = users.find(user => user.Username === match.params.Username)
+
+                                let userName = ''
+
+                                if (selectedUser) {
+                                    userName = selectedUser.Username
+                                }
+
+                                return <UpdateView user={userName} movies={movies} />
                             }}
-                        />
-                        <Route
-                            exact
-                            path="/directors/:name"
-                            render={({ match }) => {
-                                if (!movies) return <div className="main-view" />;
-                                return (
-                                    <DirectorView
-                                        director={
-                                            movies.find((m) => m.Director.Name === match.params.name)
-                                                .Director
-                                        }
-                                    />
-                                );
-                            }}
-                        />
+                            />
+                            <Route
+                                exact
+                                path="/genres/:name"
+                                render={({ match }) => {
+                                    if (!movies) return <div className="main-view" />;
+                                    return (
+                                        <GenreView
+                                            genre={
+                                                movies.find((m) => m.Genre.Name === match.params.name)
+                                                    .Genre
+                                            }
+                                        />
+                                    );
+                                }}
+                            />
+                            <Route
+                                exact
+                                path="/directors/:name"
+                                render={({ match }) => {
+                                    if (!movies) return <div className="main-view" />;
+                                    return (
+                                        <DirectorView
+                                            director={
+                                                movies.find((m) => m.Director.Name === match.params.name)
+                                                    .Director
+                                            }
+                                        />
+                                    );
+                                }}
+                            />
+                        </div>
                     </div>
-                </div>
+                </Container>
             </Router>
         );
     }

@@ -15,7 +15,6 @@ function VisibilityFilterInput(props) {
         placeholder="filter"
     />;
 }
-
 export default connect(
     null,
     { setFilter }

@@ -55262,6 +55262,8 @@ function (_React$Component) {
       }, "There are no movies.");
       return _react.default.createElement(_reactRouterDom.BrowserRouter, {
         basename: "/client"
+      }, _react.default.createElement(_reactBootstrap.Container, {
+        fluid: true
       }, _react.default.createElement("div", null, user && _react.default.createElement(_reactBootstrap.Button, {
         variant: "primary",
         type: "submit",
@@ -55367,7 +55369,7 @@ function (_React$Component) {
             }).Director
           });
         }
-      }))));
+      })))));
     }
   }]);
 
@@ -55535,7 +55537,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49409" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59836" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
