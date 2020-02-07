@@ -113,9 +113,9 @@ ul {
 .unregister-btn:hover {
   color: #903cb3;
 }
-#formBasicFilterInput {
-  border-radius: 24px;
-  border-color: #ececec;
+.form-control {
+  width: 400x;
+  text-align: center;
 }
 .my-flix {
   color: steelblue;

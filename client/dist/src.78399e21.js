@@ -55262,7 +55262,7 @@ function (_React$Component) {
       }, "There are no movies.");
       return _react.default.createElement(_reactRouterDom.BrowserRouter, {
         basename: "/client"
-      }, _react.default.createElement("div", null, _react.default.createElement(_reactBootstrap.Button, {
+      }, _react.default.createElement("div", null, user && _react.default.createElement(_reactBootstrap.Button, {
         variant: "primary",
         type: "submit",
         onClick: function onClick() {
@@ -55275,7 +55275,7 @@ function (_React$Component) {
         variant: "light mr-1",
         size: "lg",
         className: "profile-button"
-      }, "See ", user, "'s Profile")), _react.default.createElement(_reactRouterDom.Link, {
+      }, "See ", user, "'s Profile")), !user && _react.default.createElement(_reactRouterDom.Link, {
         to: "/register"
       }, "Register"), _react.default.createElement("div", {
         className: "main-view row"
@@ -55535,7 +55535,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50586" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49409" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

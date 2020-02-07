@@ -107,17 +107,17 @@ class MainView extends React.Component {
         return (
             <Router basename="/client">
                 <div>
-                    <Button
+                    {user && <Button
                         variant="primary"
                         type="submit"
                         onClick={() => this.onLoggedOut()}
                     >
                         Logout
-                        </Button>
+                        </Button>}
                     <Link component={RouterLink} to={`/users/${user}`} >
                         <Button variant="light mr-1" size="lg" className="profile-button">See {user}'s Profile</Button>
                     </Link>
-                    <Link to="/register">Register</Link>
+                    {!user && <Link to="/register">Register</Link>}
 
                     <div className="main-view row">
                         <Route
