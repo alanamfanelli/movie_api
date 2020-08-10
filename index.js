@@ -50,16 +50,16 @@ app.get('/*', express.static('client/dist'))
 // Get movies and details
 
 app.get('/movies', passport.authenticate('jwt', { session: false }),
- (req, res) => {
-  Movies.find()
-    .then((movies) => {
-      res.status(201).json(movies);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send(`Error: ${err}`);
-    });
-});
+  (req, res) => {
+    Movies.find()
+      .then((movies) => {
+        res.status(201).json(movies);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send(`Error: ${err}`);
+      });
+  });
 
 // Gets the data about a single movie by title
 app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -163,22 +163,22 @@ app.put('/users/:username/:password/:email/:dateofbirth', passport.authenticate(
 app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $set:
-  {
-    Username: req.body.Username,
-    Password: req.body.Password,
-    Email: req.body.Email,
-    Birthday: req.body.Birthday,
+    {
+      Username: req.body.Username,
+      Password: req.body.Password,
+      Email: req.body.Email,
+      Birthday: req.body.Birthday,
+    },
   },
-  },
-  { new: true }, // This line makes sure that the updated document is returned
-  (err, updatedUser) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send(`Error: ${err}`);
-    } else {
-      res.json(updatedUser);
-    }
-  });
+    { new: true }, // This line makes sure that the updated document is returned
+    (err, updatedUser) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send(`Error: ${err}`);
+      } else {
+        res.json(updatedUser);
+      }
+    });
 });
 // Add a movie to a user's list of favorites
 app.post(
